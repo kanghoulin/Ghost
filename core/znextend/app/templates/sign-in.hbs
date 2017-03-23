@@ -1,0 +1,26 @@
+<div style="text-align: center;">
+    <h4 class="title">
+      <span>
+        <a class="" data-pjax="true" href="/sign-in">登录</a>
+        <b>·</b>
+        <a class="active" data-pjax="true" href="/sign-up">注册</a>
+      </span>
+    </h4>
+    <div id="pjax-container">
+        <div class="sign-up" data-js-module='sign-up-form'>
+            <form>
+                <div class="input-prepend">
+                    <span class="add-on"><i class="fa fa-envelope-o"></i></span>
+                    {{input type="text" name="email" value=model.email placeholder="电子邮件" }}
+                </div>
+                <div class="input-prepend">
+                    <span class="add-on"><i class="fa fa-unlock-alt"></i></span>
+                    {{input type="password" name="password" value=model.password placeholder="密码" }}
+                </div>
+
+                <button name="button" type="submit" {{action "validateAndAuthenticate"}} class="ladda-button submit-button" data-color="green" data-disable-with="<span class='ladda-label'>loading</span>"><span class='ladda-label'>登录</span></button>
+
+            </form>
+        </div>
+    </div>
+</div>

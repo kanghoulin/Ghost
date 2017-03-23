@@ -1,0 +1,51 @@
+ <div class="navbar">
+	<div class="sign-navbar">
+		{{#if islogin}}
+		{{#link-to "sign-out" class="sign-button"}}<span class="word">退出</span>{{/link-to}}
+		<a class="header-user"><span class="word">{{session.user.name}}</span></a>
+		{{else}}
+		<a class="sign-button" href="/sign-up" target="_parent"><span class="word">注册</span></a>
+		<a class="sign-button" href="/sign-in" target="_parent"><span class="word">登录</span></a>
+		{{/if}}
+	</div>
+	<div class="container">
+		<div class="search">
+			{{input type="text" class="search-input" value=model.sq placeholder="搜索"}}
+			<a class="search-button" href="javascript:void(null)" {{action "search"}}>
+				<i class="ic-search"></i>
+			</a>
+		</div>    
+	</div>   
+</div>  
+<div class="container">
+	<div class="result">
+		<div class="res-nav">
+		</div>
+		<div class="res-main">
+			<div class="res-content">
+				<div class="res-total">
+				<a>搜索到{{postTotal}}个结果</a>
+				</div>
+				<ul class="res-list">
+				{{#each posts as |item|}}
+					<li>
+						<div class="content">
+							<div class="meta">
+								<a href="/author/{{item.author}}/">{{item.author}}</a>
+								<a class="time">{{zn-format-time item.created_at}}</a>
+							</div>
+							<h2 class="title">
+								<a href="/{{item.slug}}/">{{item.title}}</a>
+							</h2>
+							<p class="abstract">
+								{{item.html}}
+								<a href="/{{item.slug}}/">»</a>
+							</p>
+						</div>
+					</li>
+				{{/each}}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>  

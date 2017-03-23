@@ -1,0 +1,32 @@
+<div style="text-align: center;">
+    <h4 class="title">
+      <span>
+        <a class="" data-pjax="true" href="/sign-in">登录</a>
+        <b>·</b>
+        <a class="active" data-pjax="true" href="/sign-up">注册</a>
+      </span>
+    </h4>
+    <div id="pjax-container">
+        <div class="sign-up" data-js-module='sign-up-form'>
+            <form id="sign_up" class="form-horizontal" action="/users" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="I/CVp2w0N9o6TVz2b43XJ9UCWk3YrkNyBrpN+FUEW7puMoQY7mV1UHYXOc9YfnDzgDgehDdKrYcmzxs4H2PaXg==" />
+
+                <p id="signup_errors" class="signin_error hide"></p>
+                <div class="input-prepend">
+                    <span class="add-on"><i class="fa fa-envelope-o"></i></span>
+					{{input type="text" name="email" value=model.email placeholder="你的邮件地址" }}
+                </div>
+                <div class="input-prepend">
+                    <span class="add-on"><i class="fa fa-user"></i></span>
+					{{input type="text" name="name" value=model.name placeholder="选一个昵称" }}
+                </div>
+                <div class="input-prepend">
+                    <span class="add-on"><i class="fa fa-unlock-alt"></i></span>
+					{{input type="password" name="password" value=model.password placeholder="输入密码" }}
+                </div>
+
+                <button name="button" type="submit" {{action "validateAndRegister"}} class="ladda-button submit-button" data-color="green" data-disable-with="<span class='ladda-label'>loading</span>"><span class='ladda-label'>注册</span></button>
+				
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+{{#if showNavbar}}
+<div class="site-wrapper">
+    <header class="main-header">
+        <nav class="main-nav overlay clearfix">
+            <a class="sign-button" href="/sign-up"><span class="word">注册</span></a>
+            <a class="sign-button" href="/sign-in"><span class="word">登录</span></a>
+            <a class="sign-button" href="/"><span class="word">返回</span></a>
+        </nav>
+    </header>
+    <div style="margin-right: auto;margin-left: auto;">
+        {{outlet}}
+    </div>
+	      {{!-- The tiny footer at the very bottom --}}
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="https://ghost.org">Ghost</a> &copy; 2016</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+</div>
+{{else}}
+{{outlet}}
+{{/if}}

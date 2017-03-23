@@ -1,0 +1,120 @@
+<div style="background-color: #f6f6f6;">
+	<div>
+		<ul class="num_total">
+			<li>
+			<a><span class="line">
+			<img src="/extend/assets/comment.png">
+			 {{comment.comment_total}}
+			</span></a>
+			</li>  
+			<li>
+			<a><span class="line">
+			<img src="/extend/assets/like.png">
+			 {{comment.like_total}}
+			</span></a>
+			</li>
+		</ul>
+	</div>
+	<div>
+		{{textarea class="input-comment" rows="1" value=model.comment}}
+		<button class="btn-comment" {{action "saveComment" "" ""}}>评论</button>
+	</div>
+	<div class="comment-list">
+	{{#each comment.comments as |item|}}
+		<div class="comment-li">
+			<div class="face">
+				<a href="javascript:void(0);" target="_bank">
+					<img src="/extend/assets/header.png">
+				</a>
+			</div>
+			<div class="comment-con">
+				<div class="comment-text">
+					<a href="javascript:void(0);" target="_bank">{{item.user_name}}</a>
+					:{{item.comment}}
+				</div>
+				<div class="comment-func">
+					<div class="comment-handle">
+						<ul>
+							<li>
+								<span>
+									<a href="javascript:void(0);" {{action "reply" item.id}}>回复</a>
+								</span>
+							</li>
+							<li>
+								<span>
+									<a href="javascript:void(0);" {{action "like" item.id}}><img src="/extend/assets/like.png">
+									{{#if item.is_like}}
+									 {{item.like_num}}
+									{{else}}
+									 赞
+									{{/if}}
+									</a>
+								</span>
+							</li>
+						</ul>
+					</div>
+					<div class="comment-time">
+						{{zn-format-timeago item.createdAtUTC}}
+					</div>
+				</div>
+				{{#if item.reply}}
+				<div>
+					{{textarea class="input-comment" rows="1" value=model.sub_comment}}
+					<button class="btn-comment" {{action "saveComment" item.id ""}}>回复</button>
+				</div>
+				{{/if}}
+				{{#if item.sub_length}}
+				<div class="comment-sub">
+					<div class="comment-list">
+					{{#each item.sub_comments as |sub_item|}}
+						<div class="comment-li">
+							<div class="comment-con" style="margin: 0 auto;">
+								<div class="comment-text">
+									<a href="javascript:void(0);" target="_bank">{{sub_item.user_name}}</a>
+									{{#if sub_item.is_sreply}}
+									:回复<a href="javascript:void(0);" target="_bank">@{{sub_item.suser_name}}</a>
+									{{/if}}
+									:{{sub_item.comment}}
+								</div>
+								<div class="comment-func">
+									<div class="comment-handle">
+										<ul>
+											<li>
+												<span>
+													<a href="javascript:void(0);" {{action "reply" sub_item.id}}>回复</a>
+												</span>
+											</li>
+											<li>
+												<span>
+												<a href="javascript:void(0);" {{action "like" sub_item.id}}><img src="/extend/assets/like.png">
+												{{#if sub_item.is_like}}
+												 {{sub_item.like_num}}
+												{{else}}
+												 赞
+												{{/if}}
+												</a>
+												</span>
+											</li>
+										</ul>
+									</div>
+									<div class="comment-time">
+										{{zn-format-timeago sub_item.createdAtUTC}}
+									</div>
+								</div>
+							</div>
+							{{#if sub_item.reply}}
+							<div>
+								{{textarea class="input-comment" rows="1" value=model.sub_comment}}
+								<button class="btn-comment" {{action "saveComment" item.id sub_item.user_name}}>回复</button>
+							</div>
+							{{/if}}
+						</div>
+					{{/each}}	
+					</div>
+				</div>
+				{{/if}}
+			</div>
+		</div>
+	{{/each}}
+	</div>
+</div>

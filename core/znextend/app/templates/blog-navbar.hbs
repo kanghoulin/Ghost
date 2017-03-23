@@ -1,0 +1,19 @@
+<div class="navbar">
+	<div class="sign-navbar">
+		{{#if islogin}}
+		{{#link-to "sign-out" class="sign-button"}}<span class="word">退出</span>{{/link-to}}
+		<a class="header-user"><span class="word">{{session.user.name}}</span></a>
+		{{else}}
+		<a class="sign-button" href="/sign-up" target="_parent"><span class="word">注册</span></a>
+		<a class="sign-button" href="/sign-in" target="_parent"><span class="word">登录</span></a>
+		{{/if}}
+	</div>
+	<div class="container">
+		<div class="search">
+			{{input type="text" class="search-input" value=model.query placeholder="搜索"}}
+			<a class="search-button" href="/extend/search/{{model.query}}" target="_blank">
+				<i class="ic-search"></i>
+			</a>
+		</div>    
+	</div>   
+</div>
